@@ -1,1 +1,5 @@
-gradio
+fastapi
+pandas
+openpyxl
+python-multipart
+jinja2
