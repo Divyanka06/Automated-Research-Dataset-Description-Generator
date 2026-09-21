@@ -1161,13 +1161,12 @@ body::before {
 
                     </div>
 
-
-                    <input
-                        type="file"
-                        id="datasetFile"
-                        accept=".csv,.xlsx"
-                    >
-
+<input
+    type="file"
+    id="datasetFile"
+    accept=".csv,.xlsx"
+    onchange="showSelectedFile(this)"
+>
                 </div>
 
 
@@ -1374,7 +1373,25 @@ body::before {
 /* =========================================================
    FILE UPLOAD + ANALYSIS
    ========================================================= */
+function showSelectedFile(input) {
+    if (!input.files || input.files.length === 0) {
+        return;
+    }
 
+    const file = input.files[0];
+
+    const title = document.querySelector(".upload-title");
+    const subtitle = document.querySelector(".upload-subtitle");
+
+    title.innerText = "✓ " + file.name;
+
+    const sizeKB = file.size / 1024;
+
+    subtitle.innerText =
+        sizeKB < 1024
+            ? sizeKB.toFixed(1) + " KB • Dataset selected"
+            : (sizeKB / 1024).toFixed(2) + " MB • Dataset selected";
+}
 async function uploadFile() {
 
 
