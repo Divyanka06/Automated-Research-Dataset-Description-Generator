@@ -19,14 +19,18 @@ def generate_description_from_bytes(contents, file_name):
         # ----------------------------------------------------
 
         if file_name.lower().endswith(".csv"):
-            df = pd.read_csv(io.BytesIO(contents))
+            df = pd.read_csv(
+                io.BytesIO(contents),
+                comment="#"
+            )
 
         elif file_name.lower().endswith(".xlsx"):
-            df = pd.read_excel(io.BytesIO(contents))
+            df = pd.read_excel(
+                io.BytesIO(contents)
+            )
 
         else:
             return "Please upload a valid CSV or Excel file."
-
         # ----------------------------------------------------
         # Dataset Information
         # ----------------------------------------------------
